@@ -45,9 +45,17 @@ function Details({ page }: { page: ProductDetailsPage }) {
   const { price, listPrice, seller, installments } = useOffer(offers);
   const [front, back] = images ?? [];
 
+  console.log(JSON.stringify(offers, null, 2));
+
   return (
-    <Container class="py-0 sm:py-10">
+    <Container class="pt-[135px]">
       <div class="flex flex-col gap-4 sm:flex-row sm:gap-10">
+        {/* Breadcrumb */}
+        <div class="w-full px-4">
+          <Breadcrumb
+            itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+          />
+        </div>
         {/* Image Gallery */}
         <div class="flex flex-row overflow-auto snap-x snap-mandatory scroll-smooth sm:gap-2">
           {[front, back ?? front].map((img, index) => (
@@ -66,24 +74,25 @@ function Details({ page }: { page: ProductDetailsPage }) {
           ))}
         </div>
         {/* Product Info */}
-        <div class="flex-auto px-4 sm:px-0">
-          {/* Breadcrumb */}
-          <Breadcrumb
-            itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-          />
-          {/* Code and name */}
-          <div class="mt-4 sm:mt-8">
-            <div>
-              <Text tone="subdued" variant="caption">
-                Cod. {gtin}
-              </Text>
+        <div class="flex-auto sm:px-0">
+          <div class="flex flex-col w-full pb-3 border-b border-b-[#efefef]">
+            {/* Code and name */}
+            <div class="mt-4 px-4">
+              <h1 class="m-0 p-0 text-lg uppercase text-default font-bold tracking-[.64px]">
+                {name}
+              </h1>
+              <div class="flex gap-1">
+                <span class="text-[##212528] text-xs">Vendido por</span>
+                <span class="text-[#153359] font-bold text-xs">{seller}</span>
+              </div>
             </div>
-            <h1>
-              <Text variant="heading-3">{name}</Text>
-            </h1>
+          </div>
+          {/* Sku Selector */}
+          <div class="mt-4 px-4">
+            <ProductSelector product={product} />
           </div>
           {/* Prices */}
-          <div class="mt-4">
+          <div class="mt-4 px-4">
             <div class="flex flex-row gap-2 items-center">
               <Text
                 class="line-through"
@@ -100,10 +109,7 @@ function Details({ page }: { page: ProductDetailsPage }) {
               {installments}
             </Text>
           </div>
-          {/* Sku Selector */}
-          <div class="mt-4 sm:mt-6">
-            <ProductSelector product={product} />
-          </div>
+
           {/* Add to Cart and Favorites button */}
           <div class="mt-4 sm:mt-10 flex flex-col gap-2">
             {seller && (

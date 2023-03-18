@@ -58,9 +58,9 @@ function ProductCard({ product, preload }: Props) {
   return (
     <div
       id={`product-card-${productID}`}
-      class="w-full group relative bg-white rounded p-3 shadow shadow-black"
+      class="w-full group relative bg-white rounded p-3 shadow shadow-black min-h-[381px] max-h-[381px]"
     >
-      <a href={url} aria-label="product link">
+      <a href={price ? url : "#"} aria-label="product link">
         <div class="flex justify-between items-center absolute top-4 left-4 w-[85%] z-10">
           {discountPercentage > 0 && (
             <div class="bg-[#153359] rounded-full h-6 px-3 flex items-center justify-center">
@@ -122,17 +122,29 @@ function ProductCard({ product, preload }: Props) {
         </div>
 
         <div class="flex flex-col gap-[2px] pt-4">
-          {!!listPrice && (
-            <span class="line-through text-[#979899] text-xs">
-              De {formatPrice(listPrice, offers!.priceCurrency!)}
-            </span>
-          )}
-          <div class="flex gap-1">
-            {!!listPrice && <span class="text-base text-default">Para</span>}
-            <span class="font-bold text-base text-[#153359]">
-              {formatPrice(price, offers!.priceCurrency!)}
-            </span>
-          </div>
+          {price
+            ? (
+              <>
+                {!!listPrice && (
+                  <span class="line-through text-[#979899] text-xs">
+                    De {formatPrice(listPrice, offers!.priceCurrency!)}
+                  </span>
+                )}
+                <div class="flex gap-1">
+                  {!!listPrice && (
+                    <span class="text-base text-default">Para</span>
+                  )}
+                  <span class="font-bold text-base text-[#153359]">
+                    {formatPrice(price, offers!.priceCurrency!)}
+                  </span>
+                </div>
+              </>
+            )
+            : (
+              <span class="font-bold text-base text-[#153359]">
+                Produto indisponível
+              </span>
+            )}
           {installments && (
             <span class="text-[10px] text-[#153359] font-bold">
               Ou {installments}
