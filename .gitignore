@@ -71,3 +71,9 @@ server/
 
 # Deno.lock
 deno.lock
+
+yarn.lock
+package.json
+package-lock.json
+postcss.config.js
+tailwind.config.js

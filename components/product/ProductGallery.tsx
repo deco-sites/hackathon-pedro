@@ -20,7 +20,7 @@ function NotFound() {
 
 function Gallery({ page }: { page: ProductListingPage }) {
   return (
-    <Container class="px-4 sm:py-10">
+    <Container class="px-5">
       <div class="relative grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-10 items-center">
         {page.products?.map((product, index) => (
           <div class="w-full list-none">

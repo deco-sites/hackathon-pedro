@@ -65,10 +65,45 @@ function Header(
 ) {
   const searchbar = { ..._searchbar, products, suggestions, configVTEX };
   return (
-    <header class={`h-[${headerHeight}]`}>
-      <div class="bg-default fixed w-full z-50">
-        <Alert alerts={alerts} />
+    <header className="fixed top-0 z-50 bg-white w-full p-4">
+      {/** Mobile */}
+      <div class="flex items-center justify-between flex-wrap w-full">
+        <div className="">
+          <a href="/">
+            <img
+              src="https://newparquedpedro.vtexassets.com/assets/vtex/assets-builder/newparquedpedro.theme/2.2.4/logo-parque-d-pedro___92604ee61fe0f9d5068bc4676049f006.svg"
+              alt="Logo"
+            />
+          </a>
+        </div>
         <Navbar items={navItems} searchbar={searchbar} />
+      </div>
+      <div className="flex flex-row bg-gray-200 w-full rounded-lg mt-4">
+        <div className="py-3 px-4 w-[114px] bg-gray-200 rounded-lg">
+          <p className="font-medium text-sm">Produtos</p>
+        </div>
+        <div className="flex relative w-full rounded-lg">
+          <input
+            className="flex flex-row bg-gray-100 w-full h-full pl-4 text-sm outline-none placeholder:font-bold placeholder:text-gray-700 placeholder:text-sm"
+            placeholder="Pesquise um produto"
+          />
+          <button className="bg-transparent border-none m-0 p-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 absolute right-2 top-1/4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <Modals

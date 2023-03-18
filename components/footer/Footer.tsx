@@ -1,6 +1,7 @@
 import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Text from "$store/components/ui/Text.tsx";
 import Container from "$store/components/ui/Container.tsx";
+import Image from "deco-sites/std/components/Image.tsx";
 
 import Newsletter from "./Newsletter.tsx";
 import type { ComponentChildren } from "preact";
@@ -55,77 +56,65 @@ function FooterContainer(
 }
 
 export interface Props {
-  sections?: Section[];
+  logoUrl?: string;
 }
-
-function Footer({ sections = [] }: Props) {
+function Footer({ logoUrl }: Props) {
   return (
-    <footer class="w-full bg-footer flex flex-col divide-y-1 divide-default">
+    <footer class="w-full bg-[#2f3538] flex flex-col divide-y-1 divide-default">
       <div>
-        <Container class="w-full flex flex-col divide-y-1 divide-default">
-          <FooterContainer>
-            <Newsletter />
-          </FooterContainer>
+        <Container class="w-full flex flex-col divide-y-1 divide-default px-4">
+          <div class="flex flex-col w-full items-center justify-center gap-2 pt-9">
+            <span class="text-white font-bold">
+              Acompanhe nossas redes sociais
+            </span>
+            <span class="text-white text-sm">
+              Fique por dentro das promoções, horários de
+              <br />
+              funcionamento e novidades em primeira mão!
+            </span>
+            <div class="w-full h-full max-w-[185px] max-h-[52px]">
+              {logoUrl && (
+                <Image
+                  src={logoUrl}
+                  alt={"Logo"}
+                  width={185}
+                  height={52}
+                  class="rounded w-full"
+                  preload={false}
+                  loading={"lazy"}
+                />
+              )}
+            </div>
+            <div class="flex flex-col w-full gap-4 mt-12">
+              <span class="text-white text-sm">
+                Av. Guilherme Campos, 500 – Jardim Santa Genebra Campinas, SP –
+                CEP: 13087-901J
+              </span>
 
-          <FooterContainer>
-            {/* Desktop view */}
-            <ul class="hidden sm:flex flex-row gap-20">
-              {sections.map((section) => (
-                <li>
-                  <div>
-                    <Text variant="heading-3" tone="default-inverse">
-                      {section.label}
-                    </Text>
+              <div class="flex w-full">
+                <iframe
+                  class="w-full"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.787613319934!2d-47.06499848443638!3d-22.847345941498027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8c683e592fc29%3A0x503fbf7eb72ec1c1!2sParque%20D.%20Pedro%20Shopping!5e0!3m2!1spt-BR!2sbr!4v1664376581720!5m2!1spt-BR!2sbr"
+                >
+                </iframe>
+              </div>
 
-                    <ul
-                      class={`flex ${
-                        isIcon(section.children[0]) ? "flex-row" : "flex-col"
-                      } gap-2 pt-2`}
-                    >
-                      {section.children.map((item) => (
-                        <li>
-                          <SectionItem item={item} />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            {/* Mobile view */}
-            <ul class="flex flex-col sm:hidden sm:flex-row gap-4">
-              {sections.map((section) => (
-                <li>
-                  <Text variant="body" tone="default-inverse">
-                    <details>
-                      <summary>
-                        {section.label}
-                      </summary>
-
-                      <ul
-                        class={`flex ${
-                          isIcon(section.children[0]) ? "flex-row" : "flex-col"
-                        } gap-2 px-2 pt-2`}
-                      >
-                        {section.children.map((item) => (
-                          <li>
-                            <SectionItem item={item} />
-                          </li>
-                        ))}
-                      </ul>
-                    </details>
-                  </Text>
-                </li>
-              ))}
-            </ul>
-          </FooterContainer>
+              <div class="flex w-full mt-4">
+                <a
+                  href="https://www.google.com/maps/dir//Av.+Vicente+de+Carvalho,+909+-+Vila+da+Penha,+Rio+de+Janeiro+-+RJ,+21210-623/@-22.8510766,-43.313811,15.47z/data=!4m8!4m7!1m0!1m5!1m1!1s0x997ca292ed71df:0xc7d0c3a3058b3da2!2m2!1d-43.3115069!2d-22.8500572?hl=pt-BR"
+                  class="py-4 px-6 border border-white rounded font-bold"
+                >
+                  Como chegar
+                </a>
+              </div>
+            </div>
+          </div>
         </Container>
       </div>
 
       <div>
         <Container class="w-full">
-          <FooterContainer class="flex justify-between w-full">
+          <div class="flex justify-between w-full px-4">
             <Text
               class="flex items-center gap-1"
               variant="body"
@@ -174,7 +163,7 @@ function Footer({ sections = [] }: Props) {
                 </a>
               </li>
             </ul>
-          </FooterContainer>
+          </div>
         </Container>
       </div>
     </footer>
