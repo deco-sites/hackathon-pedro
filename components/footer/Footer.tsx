@@ -62,7 +62,7 @@ function Footer({ logoUrl }: Props) {
   return (
     <footer class="w-full bg-[#2f3538] flex flex-col divide-y-1 divide-default">
       <div>
-        <Container class="w-full flex flex-col divide-y-1 divide-default px-4">
+        <Container class="w-full flex flex-col divide-y-1 divide-default px-4 pb-8">
           <div class="flex flex-col w-full items-center justify-center gap-2 pt-9">
             <span class="text-white font-bold">
               Acompanhe nossas redes sociais
@@ -99,10 +99,10 @@ function Footer({ logoUrl }: Props) {
                 </iframe>
               </div>
 
-              <div class="flex w-full mt-4">
+              <div class="flex items-center justify-center w-full mt-1">
                 <a
                   href="https://www.google.com/maps/dir//Av.+Vicente+de+Carvalho,+909+-+Vila+da+Penha,+Rio+de+Janeiro+-+RJ,+21210-623/@-22.8510766,-43.313811,15.47z/data=!4m8!4m7!1m0!1m5!1m1!1s0x997ca292ed71df:0xc7d0c3a3058b3da2!2m2!1d-43.3115069!2d-22.8500572?hl=pt-BR"
-                  class="py-4 px-6 border border-white rounded font-bold"
+                  class="py-4 px-6 border border-white rounded font-bold flex items-center justify-center text-white text-sm"
                 >
                   Como chegar
                 </a>
@@ -114,7 +114,7 @@ function Footer({ logoUrl }: Props) {
 
       <div>
         <Container class="w-full">
-          <div class="flex justify-between w-full px-4">
+          <div class="flex justify-between w-full p-4">
             <Text
               class="flex items-center gap-1"
               variant="body"
